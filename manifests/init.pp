@@ -91,6 +91,10 @@ class cloudwatchlogs (
         hasrestart => true,
         hasstatus  => true,
         subscribe  => Concat['/etc/awslogs/awslogs.conf'],
+        provider   => $facts['os']['release']['major'] ? {
+                        '4'     => 'systemd',
+                        default = undef
+                      }
       }
     }
     /^(Ubuntu|CentOS|RedHat)$/: {
