@@ -93,7 +93,7 @@ class cloudwatchlogs (
         subscribe  => Concat['/etc/awslogs/awslogs.conf'],
         provider   => $facts['os']['release']['major'] ? {
                         '4'     => 'systemd',
-                        default = undef
+                        default => undef
                       }
       }
     }
